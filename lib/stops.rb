@@ -62,4 +62,10 @@ class Stop
     train.line
   end
 
+  def city_name
+    city_id = self.city_id
+    city = City.find(city_id)
+    city.name
+  end
+
 end
