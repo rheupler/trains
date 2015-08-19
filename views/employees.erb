@@ -1,0 +1,19 @@
+<h1>Employee Page</h1>
+
+<% if @operators != nil %>
+ <h3>Here are all your lists:</h3>
+  <div class="column col-md-9 list-group">
+    <% @operators.each do |operator| %>
+      <a class="list-group-item" href="/employees/<%=operator.id%>"><%=operator.name%></a>
+    <% end %>
+  </div>
+  <div class="column col-md-3 list-group">
+    <% @operators.each do |operator| %>
+      <a class="list-group-item btn btn-danger" role="button" href="/employees/<%=operator.id%>/delete">X</a>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="row">
+  <a href="/employees/new">New Employees Register Here</a>
+</div>

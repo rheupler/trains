@@ -1,0 +1,40 @@
+body {
+  text-align: center;
+  padding-top:50px;
+  font-family: 'Hammersmith One', sans-serif;
+  color: #999999;
+  background-size: cover;
+
+}
+
+.header {
+  background-color: rgba(204, 204, 204, 0.65);
+  padding: 15px 15px 15px 15px;
+  border-radius: 5px;
+  max-width: 40%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header .lead {
+  font-size: 4.5em;
+  font-family: 'Hammersmith One', sans-serif;
+  color: #002E4C;
+}
+
+.header .tagline {
+  font-size: 2em;
+  font-family: 'Kaushan Script', cursive;
+  color: #007ACC;
+}
+
+.index_buttons {
+  padding-top: 240px;
+  padding-right: 70px;
+  font-size: 2em;
+}
+
+.btn-default {
+  opacity: 0.25;
+}
