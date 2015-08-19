@@ -36,7 +36,7 @@ class Train
   def update(attributes)
     @line = attributes.fetch(:line)
     @city = attributes.fetch(:city)
-    DB.exec("UPDATE trains SET line = '#{@line}', '#{@city}' WHERE id = #{self.id};")
+    DB.exec("UPDATE trains SET line = '#{@line}', city = '#{@city}' WHERE id = #{self.id};")
   end
 
 end

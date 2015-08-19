@@ -41,4 +41,13 @@ describe(Train) do
     end
   end
 
+  describe('#update') do
+    it('updates train') do
+      new_train = Train.new({:line => "Rick", :city => "Portland", :id => nil})
+      new_train.save
+      new_train.update({:line => "Ross", :city => "Philly"})
+      expect(new_train.city()).to(eq("Philly"))
+      expect(new_train.line()).to(eq("Ross"))
+    end
+  end
 end
