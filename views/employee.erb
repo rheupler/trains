@@ -1,7 +1,7 @@
 <h1>Here are all of your stops</h1>
 
 
-<div class="employee_stops_list"
+<div class="employee_stops_list">
   <% if @stops != nil %>
     <div class="column col-md-3 list-group">
       <% @stops.each do |stop| %>
@@ -20,7 +20,7 @@
     </div>
     <div class="column col-md-2 list-group">
       <% @stops.each do |stop| %>
-        <form action="/employee/<%=stop.id%>" method="post">
+        <form action="/employees/<%=@operator.id%>/stop/<%=stop.id%>" method="post">
           <input name="_method" type="hidden" value="delete">
           <button class="list-group-item btn btn-danger" type="submit">X</button>
         </form>
@@ -33,4 +33,5 @@
   <a class="btn btn-default" role="button" href="/employees/<%=@operator.id%>/train/new">Add New Train</a>
   <a class="btn btn-default" role="button" href="/employees/<%=@operator.id%>/city/new">Add New City</a>
   <a class="btn btn-default" role="button" href="/employees/<%=@operator.id%>/stop/new">Add New Stop</a>
+  <a class="btn btn-default" role="button" href="/employees">All Employees</a>
 </div>

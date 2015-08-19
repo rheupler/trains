@@ -104,3 +104,13 @@ post('/employees/:id/stop/new') do
   @trains = Train.all()
   erb(:employee)
 end
+
+delete('/employees/:id/stop/:stop_id') do
+  id = params.fetch("id").to_i
+  stop_id = params.fetch("stop_id").to_i
+  @stop = Stop.find(stop_id)
+  @stop.delete
+  @operator = Operator.find(id)
+  @stops = Stop.all()
+  erb(:employee)
+end

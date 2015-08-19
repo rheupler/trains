@@ -35,7 +35,7 @@ class Stop
   end
 
   define_method(:delete) do
-    DB.exec("DELETE FROM trains WHERE id = #{self.id}")
+    DB.exec("DELETE FROM stops WHERE id = #{self.id}")
   end
 
   def update(attributes)
