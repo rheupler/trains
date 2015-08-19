@@ -1,0 +1,23 @@
+<h1>New Stop Form</h1>
+<form action="/employees/<%= @operator.id %>/stop/new" method="post" class="form-group">
+  <input type="hidden" name="operator_id" value="<%= @operator.id %>">
+
+  <label for="train_id">Select Train</label>
+  <select id='train_id' name='train_id' type='text'>
+    <% @trains.each() do |train| %>
+      <option value="<%= train.id()%>"> <%= train.line() %> </option>
+    <% end %>
+  </select>
+
+  <label for="city_id">Select Train</label>
+  <select id='city_id' name='city_id' type='text'>
+    <% @cities.each() do |city| %>
+      <option value="<%= city.id()%>"> <%= city.name() %> </option>
+    <% end %>
+  </select>
+
+  <label for="stop_time">Select Time</label>
+  <input type="time" name="stop_time" id="stop_time">
+
+  <button type="submit">Submit</button>
+</form>

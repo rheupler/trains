@@ -19,12 +19,12 @@ class Stop
   define_singleton_method(:all) do
     returned_stops = DB.exec("SELECT * FROM stops ORDER BY stop_time ASC;")
     all_stops = []
-    returned_stops.each do |train|
+    returned_stops.each do |stop|
       train_id = stop.fetch("train_id").to_i
       operator_id = stop.fetch("operator_id").to_i
       city_id = stop.fetch("city_id").to_i
       stop_time = stop.fetch("stop_time")
-      id = train.fetch("id").to_i
+      id = stop.fetch("id").to_i
       all_stops << Stop.new({:train_id => train_id, :city_id => city_id, :id => id, :operator_id => operator_id, :stop_time => stop_time})
     end
     all_stops

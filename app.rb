@@ -47,6 +47,26 @@ get('/employees/:id') do
   erb(:employee)
 end
 
+get('/employees/:id/train/new') do
+  id = params.fetch("id").to_i
+  @operator = Operator.find(id)
+  erb(:train)
+end
+
+get('/employees/:id/city/new') do
+  id = params.fetch("id").to_i
+  @operator = Operator.find(id)
+  erb(:city)
+end
+
+get('/employees/:id/stop/new') do
+  id = params.fetch("id").to_i
+  @trains = Train.all
+  @cities = City.all
+  @operator = Operator.find(id)
+  erb(:stop)
+end
+
 post('/employees/:id/train/new') do
   line = params.fetch("line")
   @train = Train.new({:line => line, :id => nil})
@@ -71,15 +91,16 @@ post('/employees/:id/city/new') do
   erb(:employee)
 end
 
-post('employees/:id/stop/new') do
+post('/employees/:id/stop/new') do
   city_id = params.fetch('city_id').to_i
   train_id = params.fetch('train_id').to_i
   operator_id = params.fetch('operator_id').to_i
   stop_time = params.fetch('stop_time')
+  @stop = Stop.new({:city_id => city_id, :train_id => train_id, :operator_id => operator_id, :stop_time => stop_time, :id => nil})
+  @stop.save
   id = params.fetch('id').to_i
   @operator = Operator.find(id)
   @stops = Stop.all()
   @trains = Train.all()
-  @stop = Stop.new({:city_id => city_id, :train_id => train_id, :operator_id => operator_id, :stop_time => stop_time, :id => nil})
   erb(:employee)
 end
