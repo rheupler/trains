@@ -4,6 +4,8 @@ require('trains')
 require('cities')
 require('operators')
 require('stops')
+require('capybara/rspec')
+require('launchy')
 
 DB = PG.connect({:dbname => 'train_schedule_test'})
 
