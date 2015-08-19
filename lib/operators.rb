@@ -28,7 +28,7 @@ class Operator
   end
 
   define_method(:delete) do
-    DB.exec("DELETE FROM operators WHERE id = #{self}")
+    DB.exec("DELETE FROM operators WHERE id = #{self.id}")
   end
 
   def update(attributes)

@@ -13,7 +13,7 @@ class Train
   end
 
   define_singleton_method(:all) do
-    returned_trains = DB.exec("SELECT * FROM trains ORDER BY city ASC;")
+    returned_trains = DB.exec("SELECT * FROM trains ORDER BY line ASC;")
     all_trains = []
     returned_trains.each do |train|
       line = train.fetch("line")

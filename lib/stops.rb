@@ -56,4 +56,10 @@ class Stop
     found_stop
   end
 
+  def train_name
+    train_id = self.train_id
+    train = Train.find(train_id)
+    train.line
+  end
+
 end
