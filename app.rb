@@ -47,10 +47,39 @@ get('/employees/:id') do
   erb(:employee)
 end
 
-post('/employees') do
-  name = params.fetch("name")
-  @train = Train.new({:name => name, :id => nil})
+post('/employees/:id/train/new') do
+  line = params.fetch("line")
+  @train = Train.new({:line => line, :id => nil})
   @train.save
   @trains = Train.all
+  id = params.fetch("id").to_i
+  @operator = Operator.find(id)
+  @stops = Stop.all
+  @cities = City.all
+  erb(:employee)
+end
+
+post('/employees/:id/city/new') do
+  name = params.fetch('name')
+  @city = City.new({:name => name, :id => nil})
+  @city.save
+  @cities = City.all
+  id = params.fetch('id').to_i
+  @operator = Operator.find(id)
+  @stops = Stop.all()
+  @trains = Train.all()
+  erb(:employee)
+end
+
+post('employees/:id/stop/new') do
+  city_id = params.fetch('city_id').to_i
+  train_id = params.fetch('train_id').to_i
+  operator_id = params.fetch('operator_id').to_i
+  stop_time = params.fetch('stop_time')
+  id = params.fetch('id').to_i
+  @operator = Operator.find(id)
+  @stops = Stop.all()
+  @trains = Train.all()
+  @stop = Stop.new({:city_id => city_id, :train_id => train_id, :operator_id => operator_id, :stop_time => stop_time, :id => nil})
   erb(:employee)
 end
