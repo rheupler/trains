@@ -49,6 +49,7 @@ get('/employees/:id') do
   @operator = Operator.find(id)
   @trains = Train.all()
   @stops = Stop.all
+  @operator_stops = Stop.operator_stops(@operator)
   @cities = City.all
   erb(:employee)
 end
@@ -82,6 +83,7 @@ post('/employees/:id/train/new') do
   @operator = Operator.find(id)
   @stops = Stop.all
   @cities = City.all
+  @operator_stops = Stop.operator_stops(@operator)
   erb(:employee)
 end
 
@@ -94,6 +96,7 @@ post('/employees/:id/city/new') do
   @operator = Operator.find(id)
   @stops = Stop.all()
   @trains = Train.all()
+  @operator_stops = Stop.operator_stops(@operator)
   erb(:employee)
 end
 
@@ -108,6 +111,8 @@ post('/employees/:id/stop/new') do
   @operator = Operator.find(id)
   @stops = Stop.all()
   @trains = Train.all()
+  @cities = City.all
+  @operator_stops = Stop.operator_stops(@operator)
   erb(:employee)
 end
 
@@ -120,6 +125,7 @@ delete('/employees/:id/stop/:stop_id') do
   @stops = Stop.all()
   @trains = Train.all
   @cities = City.all
+  @operator_stops = Stop.operator_stops(@operator)
   erb(:employee)
 end
 
@@ -153,4 +159,27 @@ post('/employees/clear_trains') do
   @operators = Operator.all()
   @trains = Train.all
   erb(:employees)
+end
+
+get('/customers') do
+  @trains = Train.all
+  @cities = City.all
+  @stops = Stop.all()
+  erb(:customers)
+end
+
+post('customers/routes/new') do
+  city_id = params.fetch("city_id")
+  city_id_2 = params.fetch("city_id_2")
+  stop_time = params.fetch("stop_time")
+  train_id = params.fetch("train_id")
+  @end_time = stop_time.random_time
+  @start_stop = Stop.new({:id => nil, :operator_id => 1, :city_id => city_id, :stop_time => stop_time, :train_id => train_id})
+  @start_stop.save
+  @end_stop = Stop.new({:id => nil, :operator_id => 1, :city_id => city_id_2, :stop_time => end_time, :train_id => train_id})
+  @end_stop.save
+  @start_city = City.find(city_id)
+  @end_city = City.find(city_id_2)
+  @train = Train.find(train_id)
+  erb(:customers_routes)
 end

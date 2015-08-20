@@ -1,21 +1,30 @@
 <h1>Customer Page</h1>
 
-<% if @customers != nil %>
-  <div class="column col-md-9 list-group">
-    <% @customers.each do |operator| %>
-      <a class="list-group-item" href="/customers/<%=customer.id%>"><%=customer.name%></a>
-    <% end %>
-  </div>
-  <div class="column col-md-3 list-group">
-    <% @operators.each do |operator| %>
-      <form action="/customers/<%=customer.id%>" method="post">
-        <input name="_method" type="hidden" value="delete">
-        <button class="list-group-item btn btn-danger" type="submit">X</button>
-      </form>
-    <% end %>
-  </div>
-<% end %>
+<form action='/customers/routes/new' method='post'>
 
-<div class="row">
-  <a href="/customers/new">New Employees Register Here</a>
-</div>
+  <label for='city_id'>Depart From</label>
+  <select id='city_id' name='city_id' type='text'>
+    <% @cities.each() do |city| %>
+      <option value="<%= city.id()%>"> <%= city.name() %> </option>
+    <% end %>
+  </select>
+
+  <label for='city_id'>Destination</label>
+  <select id='city_id_2' name='city_id_2' type='text'>
+    <% @cities.each() do |city| %>
+      <option value="<%= city.id()%>"> <%= city.name() %> </option>
+    <% end %>
+  </select>
+
+  <label for='train_id'>Select Train</label>
+  <select id='train_id' name='train_id' type='text'>
+    <% @trains.each() do |train| %>
+      <option value="<%= train.id()%>"> <%= train.line() %> </option>
+    <% end %>
+  </select>
+
+  <label for="stop_time">Leave At:</label>
+  <input name="stop_time" id="stop_time" type="time">
+
+  <button type="submit">Submit</button>
+</form>

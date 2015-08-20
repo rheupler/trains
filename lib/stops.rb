@@ -56,6 +56,20 @@ class Stop
     found_stop
   end
 
+  def self.operator_stops(operator)
+    returned_stops = DB.exec("SELECT * FROM stops WHERE operator_id = #{operator.id};")
+    all_stops = []
+    returned_stops.each do |stop|
+      train_id = stop.fetch("train_id").to_i
+      operator_id = stop.fetch("operator_id").to_i
+      city_id = stop.fetch("city_id").to_i
+      stop_time = stop.fetch("stop_time")
+      id = stop.fetch("id").to_i
+      all_stops << Stop.new({:train_id => train_id, :city_id => city_id, :id => id, :operator_id => operator_id, :stop_time => stop_time})
+    end
+    all_stops
+  end
+
   def train_name
     train_id = self.train_id
     train = Train.find(train_id)
@@ -66,6 +80,28 @@ class Stop
     city_id = self.city_id
     city = City.find(city_id)
     city.name
+  end
+
+  def random_time
+    hours = rand(23)
+    minutes_array = [15, 30, 45, 0]
+    minutes = minutes_array[rand(3)]
+    afternoon_array = ["AM", "PM"]
+    afternoon = afternoon_array[rand(1)]
+    if hours > 12
+      hours = hours - 12
+    end
+    if hours < 10
+      hours = "0#{hours}"
+    else
+      hours = "#{hours}"
+    end
+    if minutes == 0
+      minutes = "00"
+    else
+      minutes = "#{minutes}"
+    end
+    random_time = "#{hours}:#{minutes} #{afternoon}"
   end
 
 end

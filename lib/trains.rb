@@ -61,7 +61,7 @@ class Train
   end
 
   def self.add_major_trains
-    listed_trains = ["Greyhound Bus", "TriMet", "Pain Train", "Haupt-Heupler", "AmTrak", "Gainzzz Trainzzz", "Shame Train", "One-Liner", "Short Bus"]
+    listed_trains = ["Greyhound Bus", "TriMet", "Pain Train", "Haupt-Heupler", "AmTrak"]
     listed_trains.each do |train|
       train = Train.new({:line => train, :id => nil})
       train.save
