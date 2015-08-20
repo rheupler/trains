@@ -61,6 +61,10 @@ body {
   max-width: 50%;
 }
 
+.form-group {
+  color: #002E4C;
+}
+
 #leaveat {
   padding-bottom: 30px;
 }
@@ -85,4 +89,37 @@ body {
 .customer-itin a:hover {
   text-decoration: none;
   font-weight: bold;
+}
+
+.employees {
+  max-width: 50%;
+  background-color: rgba(204, 204, 204, 0.75);
+  adding: 15px 15px 15px 15px;
+  border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:35px;
+  color: #fff;
+  font-size: 1.5em;
+}
+
+.employee-list {
+  max-width: 40%;
+  margin: auto;
+  margin-top: 15px;
+}
+
+.employee-list .list-group-item {
+  background-color: rgba(204, 204, 204, 0.75);
+  text-align: center;
+}
+
+.employees h1 {
+  color:#002E4C
+}
+
+.employees a {
+  color: #002E4C;
+  max-width: 10%;
+  margin-bottom:15px;
 }

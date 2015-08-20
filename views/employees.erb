@@ -1,12 +1,15 @@
-<h1>Employee Page</h1>
+<div class="row employees">
+ <h1>Select Your Name</h1>
+</div>
 
+<div class="row employee-list">
 <% if @operators != nil %>
-  <div class="column col-md-9 list-group">
+  <div class="column col-md-10 list-group">
     <% @operators.each do |operator| %>
       <a class="list-group-item" href="/employees/<%=operator.id%>"><%=operator.name%></a>
     <% end %>
   </div>
-  <div class="column col-md-3 list-group">
+  <div class="column col-md-2 list-group">
     <% @operators.each do |operator| %>
       <form action="/employees/<%=operator.id%>" method="post">
         <input name="_method" type="hidden" value="delete">
@@ -15,15 +18,16 @@
     <% end %>
   </div>
 <% end %>
-
-<div class="row">
-  <a href="/employees/new">New Employees Register Here</a>
 </div>
 
-<% if @cities.length < 50 %>
+<div class="row employees">
+  <a href="/employees/new">New Employees<br>Register Here</a>
+</div>
+
+<% if @cities.length < 10 %>
   <div class="row">
     <form action="/employees/add_cities" method="post" class="form-group">
-      <button type="submit">Add Major Cities</button>
+      <button class = "btn btn-default" type="submit">Add Major Cities</button>
     </form>
   </div>
 <% end %>
@@ -34,3 +38,26 @@
     </form>
   </div>
 <% end %>
+
+<!-- attempting pop ups -->
+<!-- <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Launch demo modal
+</button>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div> -->
