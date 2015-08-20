@@ -45,4 +45,15 @@ class City
     found_city
   end
 
+  def city_join_train
+    returned_trains = DB.exec("SELECT trains.* FROM cities JOIN stops ON (cities.id = stops.city_id) JOIN trains ON (stops.train_id = trains.id) WHERE cities.id = #{self.id} ORDER BY stop_time ASC;")
+    all_trains = []
+    returned_trains.each do |train|
+      id = train.fetch("id").to_i
+      line = train.fetch("line")
+      all_trains << Train.new({:line => line, :id => id})
+    end
+    all_trains
+  end
+
 end

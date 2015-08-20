@@ -27,11 +27,35 @@
       <% end %>
     </div>
   <% end %>
+  <a class="btn btn-default" role="button" href="/employees/<%=@operator.id%>/stop/new">Add New Stop</a>
 </div>
 
-<div class="btn-group">
-  <a class="btn btn-default" role="button" href="/employees/<%=@operator.id%>/train/new">Add New Train</a>
-  <a class="btn btn-default" role="button" href="/employees/<%=@operator.id%>/city/new">Add New City</a>
-  <a class="btn btn-default" role="button" href="/employees/<%=@operator.id%>/stop/new">Add New Stop</a>
-  <a class="btn btn-default" role="button" href="/employees">All Employees</a>
+
+<div class="row">
+  <% if @trains != nil %>
+  <div class="column col-md-6 list-group">
+    <div class="list-title">
+      <h3>Trains in Database</h3>
+    </div>
+   <% @trains.each do |train| %>
+     <a class="list-group-item"><%= train.line %></a>
+   <% end %>
+  <% end %>
+   <a class="btn btn-default" role="button" href="/employees/<%=@operator.id%>/train/new">Add New Train</a>
+  </div>
+
+
+  <% if @cities != nil %>
+  <div class="list-title">
+    <h3>Cities in Database</h3>
+  </div>
+  <div class="column col-md-6 list-group">
+   <% @cities.each do |city| %>
+     <a class="list-group-item"><%= city.name %></a>
+   <% end %>
+  <% end %>
+   <a class="btn btn-default" role="button" href="/employees/<%=@operator.id%>/city/new">Add New City</a>
+  </div>
 </div>
+
+<a class="btn btn-default" role="button" href="/employees">Back</a>

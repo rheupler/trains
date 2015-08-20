@@ -112,5 +112,7 @@ delete('/employees/:id/stop/:stop_id') do
   @stop.delete
   @operator = Operator.find(id)
   @stops = Stop.all()
+  @trains = Train.all
+  @cities = City.all
   erb(:employee)
 end

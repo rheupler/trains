@@ -54,5 +54,24 @@ describe(City) do
     end
   end
 
+  describe('#city_join_trains') do
+    it('returns all trains to a specific city') do
+      new_train = Train.new({:line => "Rick", :id => nil})
+      new_train.save
+      new_train2 = Train.new({:line => "Mike", :id => nil})
+      new_train2.save
+      new_city = City.new({:name => "Portland", :id => nil})
+      new_city.save
+      new_operator = Operator.new({:id => nil, :name => 'Carl'})
+      new_operator.save
+      new_stop = Stop.new({:id => nil, :train_id => new_train.id, :city_id => new_city.id, :stop_time => '12:30:00', :operator_id => new_operator.id})
+      new_stop.save
+      new_stop2 = Stop.new({:id => nil, :train_id => new_train2.id, :city_id => new_city.id, :stop_time => '06:30:00', :operator_id => new_operator.id})
+      new_stop2.save
+      expect(new_city.city_join_train()).to(eq([new_train2, new_train]))
+    end
+  end
+
+
 
 end

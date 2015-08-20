@@ -24,7 +24,7 @@ class Train
   end
 
   define_method(:==) do |another_train|
-    self.line() == another_train.line() && self.id == another_train.id
+        self.line() == another_train.line() && self.id == another_train.id
   end
 
   define_method(:delete) do
