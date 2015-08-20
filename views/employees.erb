@@ -19,3 +19,18 @@
 <div class="row">
   <a href="/employees/new">New Employees Register Here</a>
 </div>
+
+<% if @cities.length < 50 %>
+  <div class="row">
+    <form action="/employees/add_cities" method="post" class="form-group">
+      <button type="submit">Add Major Cities</button>
+    </form>
+  </div>
+<% end %>
+<% if @trains.length < 9 %>
+  <div class="row">
+    <form action="/employees/add_trains" method="post" class="form-group">
+      <button type="submit">Add Major Train Lines</button>
+    </form>
+  </div>
+<% end %>

@@ -72,6 +72,12 @@ describe(City) do
     end
   end
 
+describe('.add_major_cities') do
+  it("add 50 biggest US cities to database") do
+    City.add_major_cities
+    expect(City.all[0].name).to(eq("Albuquerque"))
+  end
+end
 
 
 end

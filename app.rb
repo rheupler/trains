@@ -15,6 +15,8 @@ end
 
 get('/employees') do
   @operators = Operator.all()
+  @cities = City.all
+  @trains = Train.all
   erb(:employees)
 end
 
@@ -23,6 +25,8 @@ delete('/employees/:id') do
   @operator = Operator.find(id)
   @operator.delete
   @operators = Operator.all()
+  @cities = City.all
+  @trains = Train.all
   erb(:employees)
 end
 
@@ -35,6 +39,8 @@ post('/employees') do
   @operator = Operator.new({:name => name, :id => nil})
   @operator.save
   @operators = Operator.all
+  @cities = City.all
+  @trains = Train.all
   erb(:employees)
 end
 
@@ -115,4 +121,36 @@ delete('/employees/:id/stop/:stop_id') do
   @trains = Train.all
   @cities = City.all
   erb(:employee)
+end
+
+post('/employees/add_cities') do
+  City.add_major_cities
+  @cities = City.all
+  @operators = Operator.all()
+  @trains = Train.all
+  erb(:employees)
+end
+
+post('/employees/clear_cities') do
+  City.clear
+  @cities = City.all
+  @operators = Operator.all()
+  @trains = Train.all
+  erb(:employees)
+end
+
+post('/employees/add_trains') do
+  Train.add_major_trains
+  @cities = City.all
+  @operators = Operator.all()
+  @trains = Train.all
+  erb(:employees)
+end
+
+post('/employees/clear_trains') do
+  Train.clear
+  @cities = City.all
+  @operators = Operator.all()
+  @trains = Train.all
+  erb(:employees)
 end

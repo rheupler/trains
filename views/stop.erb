@@ -9,7 +9,7 @@
     <% end %>
   </select>
 
-  <label for="city_id">Select Train</label>
+  <label for="city_id">Select City</label>
   <select id='city_id' name='city_id' type='text'>
     <% @cities.each() do |city| %>
       <option value="<%= city.id()%>"> <%= city.name() %> </option>

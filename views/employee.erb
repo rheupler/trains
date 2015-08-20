@@ -41,6 +41,9 @@
      <a class="list-group-item"><%= train.line %></a>
    <% end %>
   <% end %>
+  <form action="/employees/clear_trains" method="post">
+    <button class="list-group-item btn btn-danger" type="submit">Clear Trains</button>
+  </form>
    <a class="btn btn-default" role="button" href="/employees/<%=@operator.id%>/train/new">Add New Train</a>
   </div>
 
@@ -54,6 +57,9 @@
      <a class="list-group-item"><%= city.name %></a>
    <% end %>
   <% end %>
+    <form action="/employees/clear_cities" method="post">
+      <button class="list-group-item btn btn-danger" type="submit">Clear Cities</button>
+    </form>
    <a class="btn btn-default" role="button" href="/employees/<%=@operator.id%>/city/new">Add New City</a>
   </div>
 </div>

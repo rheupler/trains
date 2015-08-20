@@ -31,6 +31,10 @@ class Train
     DB.exec("DELETE FROM trains WHERE id = #{self.id}")
   end
 
+  def self.clear
+    DB.exec("DELETE FROM trains *;")
+  end
+
   def update(attributes)
     @line = attributes.fetch(:line)
     DB.exec("UPDATE trains SET line = '#{@line}' WHERE id = #{self.id};")
@@ -54,6 +58,14 @@ class Train
       all_cities << City.new({:name => name, :id => id})
     end
     all_cities
+  end
+
+  def self.add_major_trains
+    listed_trains = ["Greyhound Bus", "TriMet", "Pain Train", "Haupt-Heupler", "AmTrak", "Gainzzz Trainzzz", "Shame Train", "One-Liner", "Short Bus"]
+    listed_trains.each do |train|
+      train = Train.new({:line => train, :id => nil})
+      train.save
+    end
   end
 
 end

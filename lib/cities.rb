@@ -31,6 +31,10 @@ class City
     DB.exec("DELETE FROM cities WHERE id = #{self.id}")
   end
 
+  def self.clear
+    DB.exec("DELETE FROM cities *;")
+  end
+
   def update(attributes)
     @name = attributes.fetch(:name)
     DB.exec("UPDATE cities SET name = '#{@name}' WHERE id = #{self.id};")
@@ -54,6 +58,14 @@ class City
       all_trains << Train.new({:line => line, :id => id})
     end
     all_trains
+  end
+
+  def self.add_major_cities
+    listed_cities = ["New York", "Los Angeles", "Chicago", "Houston", "Philadelphia", "Phoenix", "San Antonio", "San Diego", "Dallas", "San Jose", "Austin", "Jacksonville", "San Francisco", "Indianapolis", "Columbus", "Fort Worth", "Charlotte", "Detroit", "El Paso", "Seattle", "Denver", "Washington", "Memphis", "Boston", "Nashville", "Baltimore", "Oklahoma City", "Portland", "Las Vegas", "Louisville", "Milwaukee", "Albuquerque", "Tucson", "Fresno", "Sacramento", "Long Beach", "Kansas City", "Mesa", "Atlanta", "Virginia Beach", "Omaha", "Colorado Springs", "Raleigh", "Miami", "Oakland", "Minneapolis", "Tulsa", "Cleveland", "Wichita", "New Orleans", "Arlington"]
+    listed_cities.each do |city|
+      city = City.new({:name => city, :id => nil})
+      city.save
+    end
   end
 
 end
