@@ -120,7 +120,7 @@ class String
         hours = "0#{hours}"
         afternoon = "AM"
       elsif hours == 0
-        hours = 12
+        hours = "12"
         afternoon = "AM"
       else
         afternoon = "AM"
