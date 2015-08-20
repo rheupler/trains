@@ -168,18 +168,19 @@ get('/customers') do
   erb(:customers)
 end
 
-post('customers/routes/new') do
-  city_id = params.fetch("city_id")
-  city_id_2 = params.fetch("city_id_2")
+post('/customers/routes/new') do
+  city_id = params.fetch("city_id").to_i
+  city_id_2 = params.fetch("city_id_2").to_i
   stop_time = params.fetch("stop_time")
-  train_id = params.fetch("train_id")
+  train_id = params.fetch("train_id").to_i
   @end_time = stop_time.random_time
   @start_stop = Stop.new({:id => nil, :operator_id => 1, :city_id => city_id, :stop_time => stop_time, :train_id => train_id})
   @start_stop.save
-  @end_stop = Stop.new({:id => nil, :operator_id => 1, :city_id => city_id_2, :stop_time => end_time, :train_id => train_id})
+  @start_time = @start_stop.stop_time.format_time
+  @end_stop = Stop.new({:id => nil, :operator_id => 1, :city_id => city_id_2, :stop_time => @end_time, :train_id => train_id})
   @end_stop.save
-  @start_city = City.find(city_id)
-  @end_city = City.find(city_id_2)
-  @train = Train.find(train_id)
+  @start_city = City.find(city_id) unless City.all.length < 1
+  @end_city = City.find(city_id_2) unless City.all.length < 1
+  @train = Train.find(train_id) unless Train.all.length < 1
   erb(:customers_routes)
 end

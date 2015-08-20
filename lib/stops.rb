@@ -82,26 +82,58 @@ class Stop
     city.name
   end
 
-  def random_time
-    hours = rand(23)
-    minutes_array = [15, 30, 45, 0]
-    minutes = minutes_array[rand(3)]
-    afternoon_array = ["AM", "PM"]
-    afternoon = afternoon_array[rand(1)]
-    if hours > 12
-      hours = hours - 12
-    end
-    if hours < 10
-      hours = "0#{hours}"
-    else
-      hours = "#{hours}"
-    end
-    if minutes == 0
-      minutes = "00"
-    else
-      minutes = "#{minutes}"
-    end
-    random_time = "#{hours}:#{minutes} #{afternoon}"
-  end
+end
 
+class String
+
+    def random_time
+      hours = rand(23)
+      minutes_array = [15, 30, 45, 0]
+      minutes = minutes_array[rand(3)]
+      afternoon_array = ["AM", "PM"]
+      afternoon = afternoon_array[rand(1)]
+      if hours > 12
+        hours = hours - 12
+      end
+      if hours < 10
+        hours = "0#{hours}"
+      else
+        hours = "#{hours}"
+      end
+      if minutes == 0
+        minutes = "00"
+      else
+        minutes = "#{minutes}"
+      end
+      random_time = "#{hours}:#{minutes} #{afternoon}"
+    end
+
+    def format_time
+      split_time = self.split(":")
+      split_time = split_time.map {|number| number.to_i}
+      hours = split_time[0]
+      minutes = split_time[1]
+      if hours > 12
+        hours = hours - 12
+        afternoon = "PM"
+      elsif hours < 10
+        hours = "0#{hours}"
+        afternoon = "AM"
+      elsif hours == 0
+        hours = 12
+        afternoon = "AM"
+      else
+        afternoon = "AM"
+      end
+      if minutes < 15
+        minutes = "15"
+      elsif minutes > 15 && minutes < 30
+        minutes = "30"
+      elsif minutes > 30 && minutes < 45
+        minutes = "45"
+      else
+        minutes = "00"
+      end
+      "#{hours}:#{minutes} #{afternoon}"
+    end
 end

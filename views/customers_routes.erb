@@ -1,7 +1,11 @@
-<div class="row">
+<div class="row customer-itin">
   <h3>Here is your itinerary!</h3>
-  <p>Departing from <%= @start_city %> at <%= @start_stop.stop_time %>.</p>
-  <p>Arriving at <%= @end_city %> at <%= @end_time %> give or take a few hours.</p>
-  <p>Traveling on <%= @train %>.
+  <p>Departing from <font color="#007ACC"><%= @start_city.name %></font> at <font color="#007ACC"><%= @start_time %></font>.</p>
+  <p>Arriving at <font color="#007ACC"><%= @end_city.name %></font> in <font color="#007ACC"><%= @end_time %></font> give or take <font color="#007ACC">a few hours.</font></p>
+  <p>Traveling by <font color="#007ACC"><%= @train.line %></font>.
   <p>Enjoy your travels!</p>
+</div>
+
+<div class="row customer-itin">
+  <a href="/customers">Buy Another Ticket</a>
 </div>
